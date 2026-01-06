@@ -68,7 +68,7 @@ function SecondTorus() {
 
 function FloatingParticles() {
   const particlesRef = useRef<THREE.Points>(null);
-  
+
   const particleCount = 150;
   const positions = useMemo(() => {
     const pos = new Float32Array(particleCount * 3);
@@ -76,7 +76,7 @@ function FloatingParticles() {
       const radius = 3 + Math.random() * 4;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
-      
+
       pos[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
       pos[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       pos[i * 3 + 2] = radius * Math.cos(phi);
@@ -110,12 +110,14 @@ function FloatingParticles() {
           count={particleCount}
           array={positions}
           itemSize={3}
+          args={[positions, 3]}
         />
         <bufferAttribute
           attach="attributes-color"
           count={particleCount}
           array={colors}
           itemSize={3}
+          args={[colors, 3]}
         />
       </bufferGeometry>
       <pointsMaterial
@@ -161,7 +163,7 @@ export function HeroGradient() {
     <div className="absolute inset-0 -z-10 overflow-hidden">
       {/* Animated mesh gradient */}
       <div className="absolute inset-0 mesh-gradient animate-gradient bg-[length:200%_200%]" />
-      
+
       {/* Floating orbs */}
       <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-cyan/20 blur-[100px] animate-float" />
       <div
@@ -174,7 +176,7 @@ export function HeroGradient() {
       />
 
       {/* Subtle grid pattern */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `

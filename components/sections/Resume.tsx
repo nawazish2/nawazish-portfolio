@@ -1,20 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { personalInfo } from "@/lib/data";
+import { DATA } from "@/lib/data";
 import { FiFileText, FiDownload } from "react-icons/fi";
 
 export function Resume() {
   const handleResumeClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open(personalInfo.resume, '_blank', 'noopener,noreferrer');
+    window.open(DATA.resume, '_blank', 'noopener,noreferrer');
   };
 
   const handleDownload = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     const link = document.createElement("a");
-    link.href = personalInfo.resume;
+    link.href = DATA.resume;
     link.download = `Nawazish_Khan_Resume.pdf`;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
@@ -65,7 +65,7 @@ export function Resume() {
                 zIndex: 0,
               }}
             />
-            
+
             <div className="relative z-10 text-center">
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 5 }}
@@ -74,12 +74,12 @@ export function Resume() {
               >
                 <FiFileText className="w-8 h-8 text-[var(--accent)]" />
               </motion.div>
-              
+
               <h3 className="text-2xl sm:text-3xl font-bold mb-3">View My Resume</h3>
               <p className="text-[var(--muted)] mb-6">
                 Click here to open or download my resume PDF
               </p>
-              
+
               <div className="flex items-center justify-center gap-4">
                 <motion.button
                   onClick={handleResumeClick}
@@ -90,7 +90,7 @@ export function Resume() {
                   <FiFileText className="w-4 h-4" />
                   Open Resume
                 </motion.button>
-                
+
                 <motion.button
                   onClick={handleDownload}
                   whileHover={{ scale: 1.05 }}

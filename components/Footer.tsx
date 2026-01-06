@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { socialLinks, personalInfo } from "@/lib/data";
+import { DATA } from "@/lib/data";
 import { FiArrowUp } from "react-icons/fi";
 
 export function Footer() {
@@ -20,13 +20,15 @@ export function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const socialLinks = Object.values(DATA.contact.social);
+
   return (
     <>
       {/* Back to top button - minimalist with enhanced effects, responsive */}
       <motion.button
         onClick={scrollToTop}
         initial={{ opacity: 0, scale: 0, rotate: -180 }}
-        animate={{ 
+        animate={{
           opacity: showBackToTop ? 1 : 0,
           scale: showBackToTop ? 1 : 0,
           rotate: showBackToTop ? 0 : -180
@@ -56,7 +58,7 @@ export function Footer() {
               transition={{ duration: 0.6 }}
               className="text-center md:text-left"
             >
-              <p className="font-semibold mb-2 gradient-text-animated text-lg">{personalInfo.name}</p>
+              <p className="font-semibold mb-2 gradient-text-animated text-lg">{DATA.name}</p>
               <p className="text-sm text-[var(--muted)]">
                 © {new Date().getFullYear()} All rights reserved.
               </p>

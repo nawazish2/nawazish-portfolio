@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { externalProfiles } from "@/lib/data";
+import { DATA } from "@/lib/data";
 import { FiAward, FiTrendingUp, FiTarget, FiExternalLink, FiCheckCircle } from "react-icons/fi";
 
 const containerVariants = {
@@ -16,9 +16,9 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 1, y: 30, scale: 0.95 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     scale: 1,
     transition: {
       type: "spring",
@@ -42,7 +42,7 @@ export function Achievements() {
       <div className="absolute inset-0 mesh-gradient opacity-30" />
       <div className="absolute top-20 right-20 w-72 h-72 orb orb-cyan opacity-30" />
       <div className="absolute bottom-20 left-20 w-80 h-80 orb orb-magenta opacity-30" />
-      
+
       <div className="max-w-6xl mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -51,7 +51,7 @@ export function Achievements() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <motion.span 
+          <motion.span
             initial={{ opacity: 1, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -79,7 +79,7 @@ export function Achievements() {
             className="p-8 rounded-3xl glass-card gradient-border card-hover"
           >
             <div className="flex items-center gap-3 mb-4">
-              <motion.div 
+              <motion.div
                 className="p-3 rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-800/20 to-cyan/5 text-[var(--cyan)]"
                 whileHover={{ rotate: 15, scale: 1.1 }}
               >
@@ -92,7 +92,7 @@ export function Achievements() {
               structured courses and consistent practice.
             </p>
             <motion.a
-              href={externalProfiles[0].url}
+              href={DATA.externalProfiles[0].url}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-[var(--cyan)] hover:gap-3 transition-all font-medium"
@@ -109,7 +109,7 @@ export function Achievements() {
             className="p-8 rounded-3xl glass-card gradient-border card-hover"
           >
             <div className="flex items-center gap-3 mb-4">
-              <motion.div 
+              <motion.div
                 className="p-3 rounded-xl bg-gradient-to-br from-magenta/20 to-neutral-300 dark:to-neutral-700/5 text-[var(--cyan)]"
                 whileHover={{ rotate: -15, scale: 1.1 }}
               >
@@ -161,9 +161,9 @@ export function Achievements() {
           >
             {/* Decorative line */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-neutral-200 dark:from-neutral-800 via-neutral-300 dark:via-neutral-700 to-cyan" />
-            
+
             <div className="flex items-center gap-3 mb-4">
-              <motion.div 
+              <motion.div
                 className="p-3 rounded-xl bg-white dark:bg-neutral-800 shadow-lg"
                 animate={{ rotate: [0, 5, -5, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
@@ -174,7 +174,7 @@ export function Achievements() {
             </div>
             <ul className="space-y-3">
               {goals.map((goal, index) => (
-                <motion.li 
+                <motion.li
                   key={goal.text}
                   className="flex items-center gap-3 text-neutral-600 dark:text-neutral-400"
                   initial={{ opacity: 1, x: -20 }}
@@ -197,7 +197,7 @@ export function Achievements() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <motion.div 
+          <motion.div
             className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass-card"
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 2, repeat: Infinity }}

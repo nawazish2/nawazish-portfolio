@@ -10,7 +10,8 @@ export const DATA = {
   description: "3rd-year Computer Science student passionate about building modern web applications and solving complex problems with clean code.",
   summary: "At the end of 2024, I'm currently in my 3rd year pursuing a Bachelor's degree in Computer Science at [I.K. Gujral Punjab Technical University](/#education). I'm passionate about **web development**, **data structures & algorithms**, and **open source**. I love building things and helping people through code.",
   avatarUrl: "/images/profile.jpg",
-  
+  resume: "/nawazish.pdf",
+
   skills: [
     "React",
     "Next.js",
@@ -23,11 +24,11 @@ export const DATA = {
     "C++",
     "JavaScript",
   ],
-  
+
   navbar: [
     { href: "/", icon: null, label: "Home" },
   ],
-  
+
   contact: {
     email: "knawazish153@gmail.com",
     tel: "+123456789",
@@ -52,7 +53,7 @@ export const DATA = {
       },
     },
   },
-  
+
   work: [] as Array<{
     company: string;
     href: string;
@@ -64,7 +65,7 @@ export const DATA = {
     end: string;
     description?: string;
   }>,
-  
+
   education: [
     {
       school: "I.K. Gujral Punjab Technical University",
@@ -75,7 +76,7 @@ export const DATA = {
       end: "2027",
     },
   ],
-  
+
   projects: [
     {
       title: "Portfolio Website",
@@ -106,7 +107,7 @@ export const DATA = {
     },
     // Add more projects here
   ],
-  
+
   hackathons: [
     // {
     //   title: "Hackathon Name",
@@ -121,6 +122,13 @@ export const DATA = {
     //     },
     //   ],
     // },
+  ],
+
+  externalProfiles: [
+    {
+      name: "TakeUForward",
+      url: "https://takeuforward.org/profile/nawazish2", // TODO: Update with actual profile URL
+    },
   ],
 } as const;
 
