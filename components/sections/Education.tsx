@@ -1,69 +1,60 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { education } from "@/lib/data";
-import { FiBook } from "react-icons/fi";
+import { DATA } from "@/lib/data";
+import Image from "next/image";
+import Link from "next/link";
 
 export function Education() {
   return (
-    <section id="education" className="section" aria-labelledby="education-heading">
-      <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="section-header"
-        >
-          <span className="section-label" aria-label="Section label: Education">Education</span>
-          <h2 id="education-heading" className="section-title">Academic Background</h2>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="w-full max-w-4xl mx-auto"
-        >
-          <div className="flex items-start gap-6">
-            <motion.div 
-              className="p-3 rounded-xl bg-[var(--surface-2)] shrink-0 glow-on-hover"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              aria-hidden="true"
+    <section id="education" className="space-y-3">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="flex min-h-0 flex-col gap-y-3"
+      >
+        <h2 className="text-xl font-bold">Education</h2>
+        <div className="space-y-8">
+          {DATA.education.map((education, id) => (
+            <motion.div
+              key={id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: id * 0.1 }}
             >
-              <FiBook className="w-6 h-6 text-[var(--accent)]" aria-hidden="true" />
-            </motion.div>
-            
-            <div className="flex-1">
-              <div className="flex items-start justify-between flex-wrap gap-2 mb-2">
-                <div>
-                  <h3 className="text-base sm:text-lg font-semibold">{education.university}</h3>
-                  <p className="text-sm text-[var(--muted)]">{education.shortName}</p>
+              <Link
+                href={education.href}
+                target="_blank"
+                className="flex flex-col space-y-1.5"
+              >
+                <div className="flex items-center justify-between gap-x-2 text-base">
+                  <div className="flex items-center gap-x-2">
+                    {education.logoUrl && (
+                      <Image
+                        src={education.logoUrl}
+                        alt={education.school}
+                        width={28}
+                        height={28}
+                        className="size-7 rounded-full"
+                      />
+                    )}
+                    <h3 className="font-semibold leading-none">
+                      {education.school}
+                    </h3>
+                  </div>
+                  <div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
+                    {education.start} - {education.end}
+                  </div>
                 </div>
-                <motion.span
-                  className="tag"
-                  whileHover={{ scale: 1.05 }}
-                  role="status"
-                  aria-label={`Status: ${education.status}`}
-                >
-                  <motion.span
-                    className="w-1.5 h-1.5 rounded-full bg-green-500"
-                    animate={{ opacity: [1, 0.5, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    aria-hidden="true"
-                  />
-                  {education.status}
-                </motion.span>
-              </div>
-
-              <p className="font-medium mb-1">{education.degree}</p>
-              <p className="text-[var(--muted)] text-sm mb-3">{education.branch}</p>
-              
-              <p className="text-sm text-[var(--muted)]">{education.duration}</p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+                <div className="font-sans text-xs">{education.degree}</div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }

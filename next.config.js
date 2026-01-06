@@ -7,15 +7,9 @@ const nextConfig = {
         hostname: '**',
       },
     ],
-    unoptimized: false, // Enable image optimization on Vercel
   },
-  webpack: (config) => {
-    config.externals.push({
-      'utf-8-validate': 'commonjs utf-8-validate',
-      'bufferutil': 'commonjs bufferutil',
-    });
-    return config;
-  },
+  // Enable Turbopack explicitly
+  turbopack: {},
   // Optimize for production
   compress: true,
   poweredByHeader: false,
@@ -23,4 +17,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-

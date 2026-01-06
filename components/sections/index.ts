@@ -1,10 +1,7 @@
 export { Hero } from "./Hero";
 export { About } from "./About";
+export { Experience } from "./Experience";
+export { Education } from "./Education";
 export { Skills } from "./Skills";
 export { Projects } from "./Projects";
-export { Education } from "./Education";
-export { Experience } from "./Experience";
-export { Resume } from "./Resume";
-export { BlogPreview } from "./BlogPreview";
 export { Contact } from "./Contact";
-

@@ -2,11 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navigation } from "@/components/Navigation";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { Footer } from "@/components/Footer";
-import { PerformanceScript } from "@/components/PerformanceScript";
-import { StructuredData } from "@/components/StructuredData";
-import { FloatingParticles } from "@/components/effects/FloatingParticles";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -103,27 +98,14 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${inter.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
-        <StructuredData />
-        <PerformanceScript />
-        <FloatingParticles />
+      <body className="min-h-screen bg-background font-sans antialiased">
         <ThemeProvider>
-          {/* Skip to content link for accessibility */}
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--accent)] focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
-            aria-label="Skip to main content"
-          >
-            Skip to content
-          </a>
-          <ScrollProgress />
-          <Navigation />
-          <main id="main-content" className="relative z-10" role="main" aria-label="Main content">
-            {children}
-          </main>
-          <Footer />
+          <div className="relative flex min-h-screen flex-col bg-background">
+            <Navigation />
+            <main className="flex-1">{children}</main>
+          </div>
         </ThemeProvider>
       </body>
     </html>

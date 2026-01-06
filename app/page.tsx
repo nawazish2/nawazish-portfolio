@@ -5,30 +5,19 @@ import {
   Projects,
   Education,
   Experience,
-  BlogPreview,
   Contact,
 } from "@/components/sections";
-import { getLatestPosts } from "@/lib/blog";
 
 export default function Home() {
-  let latestPosts: ReturnType<typeof getLatestPosts> = [];
-  
-  try {
-    latestPosts = getLatestPosts(3);
-  } catch (error) {
-    console.error("Error loading posts:", error);
-  }
-
   return (
-    <div className="relative">
+    <main className="container mx-auto max-w-2xl px-4 md:px-8 py-12 md:py-16 space-y-16 md:space-y-24">
       <Hero />
       <About />
-      <Skills />
-      <Projects />
       <Experience />
       <Education />
+      <Skills />
+      <Projects />
       <Contact />
-      <BlogPreview posts={latestPosts} />
-    </div>
+    </main>
   );
 }
