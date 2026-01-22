@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { DATA } from "@/lib/data";
 import Link from "next/link";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 export function Projects() {
   return (
@@ -10,83 +11,96 @@ export function Projects() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="flex min-h-0 flex-col gap-y-3"
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
       >
-        <div className="space-y-8 w-full">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Check out my latest work
-              </h2>
-              <p className="text-muted-foreground md:text-xl/relaxed">
-                I&apos;ve worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites.
-              </p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {DATA.projects.map((project, id) => (
-              <motion.div
-                key={id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: id * 0.1 }}
-              >
-                <Link
-                  href={project.href}
-                  target="_blank"
-                  className="block cursor-pointer"
-                >
-                  <div className="rounded-lg border bg-card text-card-foreground hover:shadow-md transition-all duration-300 ease-out h-full overflow-hidden">
-                    {project.video && (
-                      <video
-                        src={project.video}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="pointer-events-none mx-auto h-40 w-full object-cover object-top"
-                      />
+        {/* Section header */}
+        <div className="space-y-2">
+          <p className="section-kicker">Projects</p>
+          <h2 className="section-title text-3xl md:text-4xl">
+            Selected work & experiments
+          </h2>
+        </div>
+
+        {/* Projects grid */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {DATA.projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="group relative overflow-hidden rounded-3xl p-6 transition-all surface-card"
+            >
+              {/* Gradient glow on hover */}
+              <div className="pointer-events-none absolute -inset-px rounded-3xl bg-gradient-to-br from-primary/0 via-primary/10 to-primary/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+
+              <div className="relative space-y-4">
+                {/* Project header */}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="space-y-1">
+                    <h3 className="font-heading text-xl font-bold">
+                      {project.title}
+                    </h3>
+                    {project.active && (
+                      <span className="chip inline-flex items-center gap-2 text-primary">
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary"></span>
+                        </span>
+                        Active
+                      </span>
                     )}
-                    {project.image && !project.video && (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        width={500}
-                        height={300}
-                        className="h-40 w-full overflow-hidden object-cover object-top"
-                      />
-                    )}
-                    <div className="p-4">
-                      <div className="space-y-1.5">
-                        <div className="font-semibold tracking-tight">
-                          {project.title}
-                        </div>
-                        <time className="font-sans text-xs">
-                          {project.dates}
-                        </time>
-                        <div className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
-                          {project.description}
-                        </div>
-                      </div>
-                      <div className="mt-4 flex flex-wrap gap-1">
-                        {project.technologies.map((tech, idx) => (
-                          <div
-                            key={idx}
-                            className="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                          >
-                            {tech}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+                  <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                    {project.dates}
+                  </span>
+                </div>
+
+                {/* Description */}
+                <p className="text-sm text-muted-foreground">
+                  {project.description}
+                </p>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="chip text-muted-foreground"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex items-center gap-3 pt-2">
+                  {project.links.map((link) => (
+                    <Link
+                      key={link.type}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/70 transition-colors hover:text-foreground"
+                    >
+                      {link.type === "Source" ? (
+                        <FaGithub className="h-4 w-4" />
+                      ) : (
+                        <FaExternalLinkAlt className="h-3 w-3" />
+                      )}
+                      {link.type}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Decorative corner accent */}
+              <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-2xl transition-transform duration-500 group-hover:scale-150"></div>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </section>

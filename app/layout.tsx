@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -105,6 +106,7 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col bg-background">
             <Navigation />
             <main className="flex-1">{children}</main>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>

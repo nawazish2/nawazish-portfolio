@@ -47,7 +47,7 @@ export function Footer() {
         </motion.div>
       </motion.button>
 
-      <footer className="py-8 sm:py-10 border-t border-[var(--border)]/50 relative" role="contentinfo">
+      <footer className="py-8 md:py-10 border-t border-border/60 bg-background/70 relative" role="contentinfo">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Left */}
@@ -58,11 +58,11 @@ export function Footer() {
               transition={{ duration: 0.6 }}
               className="text-center md:text-left"
             >
-              <p className="font-semibold mb-2 gradient-text-animated text-lg">{DATA.name}</p>
-              <p className="text-sm text-[var(--muted)]">
+              <p className="font-semibold mb-2 text-lg">{DATA.name}</p>
+              <p className="text-sm text-muted-foreground">
                 © {new Date().getFullYear()} All rights reserved.
               </p>
-              <p className="text-xs text-[var(--muted)] mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Built with Next.js, TypeScript & Tailwind CSS
               </p>
             </motion.div>
@@ -88,7 +88,7 @@ export function Footer() {
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
-                  className="p-3 rounded-2xl text-[var(--muted)] hover:text-[var(--accent)] glass transition-all duration-300"
+                  className="p-3 rounded-full border border-border/60 bg-background/70 text-muted-foreground hover:text-foreground transition-all duration-300"
                   aria-label={`Visit ${link.name} profile (opens in new tab)`}
                 >
                   <link.icon className="w-5 h-5" aria-hidden="true" />

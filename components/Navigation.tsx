@@ -6,13 +6,41 @@ import Link from "next/link";
 
 export function Navigation() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto max-w-screen-2xl flex h-14 items-center px-4 md:px-8">
-        <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold">{DATA.name}</span>
-          </Link>
-          <nav className="flex items-center gap-4 md:gap-6 text-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur">
+      <div className="container mx-auto flex h-16 max-w-5xl items-center justify-between px-6 md:px-10">
+        <Link href="/" className="flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-background text-sm font-semibold">
+            {DATA.initials}
+          </span>
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold tracking-tight">
+              {DATA.name}
+            </span>
+            <span className="text-xs text-muted-foreground">
+              Full Stack Developer
+            </span>
+          </div>
+        </Link>
+
+        <nav className="hidden items-center gap-6 text-xs font-semibold uppercase tracking-[0.28em] text-muted-foreground md:flex">
+          {[
+            { name: "About", href: "#about" },
+            { name: "Experience", href: "#experience" },
+            { name: "Projects", href: "#projects" },
+            { name: "Contact", href: "#contact" },
+          ].map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="transition-colors hover:text-foreground"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <div className="hidden items-center gap-3 sm:flex">
             {Object.entries(DATA.contact.social).map(([name, social]) => (
               social.navbar && (
                 <Link
@@ -20,16 +48,14 @@ export function Navigation() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors hover:text-foreground/80 text-foreground/60"
+                  className="rounded-full border border-border/60 bg-background/70 p-2 text-foreground/70 transition-colors hover:text-foreground"
                 >
                   <social.icon className="size-4" />
                   <span className="sr-only">{name}</span>
                 </Link>
               )
             ))}
-          </nav>
-        </div>
-        <div className="flex flex-1 items-center justify-end space-x-2">
+          </div>
           <ThemeToggle />
         </div>
       </div>
